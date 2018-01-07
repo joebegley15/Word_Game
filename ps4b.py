@@ -125,8 +125,21 @@ def playGame(wordList):
     wordList: list (string)
     """
     while True:
-        
-
+        choice = input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
+        if choice == 'n':
+            hand = dealHand(HAND_SIZE)
+            playHand(hand, wordList, HAND_SIZE)
+        elif choice == 'r':
+            try:
+                hand
+            except:
+                print('You have not played a hand yet. Please play a new hand first!') 
+            else:
+                playHand(hand, wordList, HAND_SIZE)
+        elif choice == 'e':
+            break
+        else:
+            print('Invalid Input')
         
 #
 # Build data structures used for entire session and play game
