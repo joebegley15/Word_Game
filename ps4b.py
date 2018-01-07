@@ -127,19 +127,37 @@ def playGame(wordList):
     while True:
         choice = input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
         if choice == 'n':
-            hand = dealHand(HAND_SIZE)
-            playHand(hand, wordList, HAND_SIZE)
+            kickBack = True
+            while kickBack:
+                soloOrComp = input('Enter u to have yourself play, c to have the computer play: ')
+                if soloOrComp == 'u':
+                    hand = dealHand(HAND_SIZE)
+                    playHand(hand, wordList, HAND_SIZE)
+                    kickBack = False
+                elif soloOrComp == 'c':
+                    hand = dealHand(HAND_SIZE)
+                    compPlayHand(hand, wordList, HAND_SIZE)
+                    kickBack = False
+                else:
+                    print('Invalid command.')             
         elif choice == 'r':
             try:
                 hand
             except:
                 print('You have not played a hand yet. Please play a new hand first!') 
             else:
-                playHand(hand, wordList, HAND_SIZE)
+                soloOrComp = input('Enter u to have yourself play, c to have the computer play: ')
+                if soloOrComp == 'u':
+                    playHand(hand, wordList, HAND_SIZE)
+                elif soloOrComp == 'c':
+                    compPlayHand(hand, wordList, HAND_SIZE)
+                else:
+                    print('Invalid command.') 
         elif choice == 'e':
             break
         else:
-            print('Invalid Input')
+            print('Invalid command.')
+        print()
         
 #
 # Build data structures used for entire session and play game
